@@ -38,11 +38,9 @@ checkUser("admin");
                 <table>
                     <thead>
                         <tr>
-                            <th>Roll Number</th>
                             <th>Student Name</th>
-                            <th>Course Enrolled</th>
                             <th>Email</th>
-                            <th>What's App Number</th>
+                            <th>Contact Number</th>
                             <th>Address</th>
                             <th>Status</th>
                             <th>Created At</th>
@@ -54,22 +52,16 @@ checkUser("admin");
                         // Include database connection script
                         include 'db_connect.php';
 
-                        $sql = "SELECT * FROM studentdetails";
+                        $sql = "SELECT * FROM users";
                         $result = $conn->query($sql);
 
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
                                 echo "<tr>";
-                                echo "<td>" . $row["student_number"] . "</td>";
-                                echo "<td>" . $row["emp_number"] . "</td>";
-                                echo "<td>" . $row["empname"] . "</td>";
-                                echo "<td>" . $row["designation"] . "</td>";
-                                echo "<td>" . $row["unit"] . "</td>";
-                                echo "<td>" . $row["department"] . "</td>";
-                                echo "<td>" . $row["bill_unit_no"] . "</td>";
-                                echo "<td>" . $row["allocation"] . "</td>";
-                                echo "<td>" . $row["operator"] . "</td>";
-                                echo "<td>" . $row["plan"] . "</td>";
+                                echo "<td>" . $row["username"] . "</td>";
+                                echo "<td>" . $row["email"] . "</td>";
+                                echo "<td>" . $row["contact"] . "</td>";
+                                echo "<td>" . $row["address"] . "</td>";
                                 echo "<td>" . $row["status"] . "</td>";
 
                                 $created_at = new DateTime($row["created_at"]);
@@ -91,7 +83,7 @@ checkUser("admin");
         </section>
     </main>
     <footer>
-        <p>&copy; 2024 East Coast Railway. All rights reserved.</p>
+        <p>&copy; 2025 SKYBIRD. All rights reserved.</p>
         <div class="footer-links">
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Service</a>
@@ -101,7 +93,7 @@ checkUser("admin");
     function filterTable() {
         const input = document.getElementById('search-bar');
         const filter = input.value.toUpperCase();
-        const table = document.querySelector('#student-details table');
+        const table = document.querySelector('#users table');
         const tr = table.getElementsByTagName('tr');
 
         for (let i = 1; i < tr.length; i++) {
